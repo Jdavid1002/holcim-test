@@ -13,7 +13,7 @@ export const http = async (params : IUseQuery) => {
   try {
     const response = await axios({
       method : params?.method,
-      url : params?.url,
+      url : process.env.NEXT_PUBLIC_API_URL + params?.url,
       data : params?.data
     })
   

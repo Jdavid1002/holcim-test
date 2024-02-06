@@ -1,23 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Role {
-  _id: string;
-  name: string;
-  slug: string;
-  can_managment_tournaments: boolean;
-  can_managment_users: boolean;
-  can_participate_tournaments: boolean;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
-}
-
 export interface UserState {
   name: string;
   email: string;
   password?: string;
-  _id?: string;
-  role_id ? : Role;
+  id?: string;
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
@@ -28,19 +15,7 @@ const initialState = {
   name: "",
   email: "",
   password: "",
-  _id: "",
-  created_at: "", 
-  role_id: {
-    _id: "",
-    name: "",
-    slug: "",
-    can_managment_tournaments: false,
-    can_managment_users: false,
-    can_participate_tournaments: false,
-    createdAt: "",
-    updatedAt: "",
-    __v: 0
-  },
+  id: "",
   createdAt: "",
   updatedAt: "",
   __v: 0

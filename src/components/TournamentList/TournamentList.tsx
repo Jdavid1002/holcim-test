@@ -13,7 +13,7 @@ export interface ITournamentList {
   price : number
   participants ?: string[]
   createdBy ?: UserState
-  _id ?: string
+  id ?: string
   createdAt ?: string | Date
   updatedAt ?: string | Date
 }
@@ -79,7 +79,7 @@ const TournamentList = (props : ITournamentListProps) => {
       price : data?.price,
     }
 
-    if(isEditMode) params = {...params, tournamentId : tournamentFormData?._id}
+    if(isEditMode) params = {...params, tournamentId : tournamentFormData?.id}
 
     const response = await http({
       method : isEditMode ? 'PUT' : 'POST',
@@ -147,15 +147,15 @@ const TournamentList = (props : ITournamentListProps) => {
               <CustomButton text='Edit' onClick={() => openModal(true,item)} />
             :null}
             
-            {props?.is_admin && item?._id ?
-              <CustomButton text='Delete' onClick={() => handleDeleteTournament(item?._id)} />
+            {props?.is_admin && item?.id ?
+              <CustomButton text='Delete' onClick={() => handleDeleteTournament(item?.id)} />
             :null}
 
 
             {props?.is_regular_user && !item?.participants?.includes(props?.user_id) ? 
               <CustomButton 
                 text='Register' 
-                onClick={() => handleRegister(item?._id)}
+                onClick={() => handleRegister(item?.id)}
               />
             : null}
 

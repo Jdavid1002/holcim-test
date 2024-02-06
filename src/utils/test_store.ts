@@ -8,7 +8,7 @@ const initialState = {
     name: "",
     email: "",
     password: "",
-    _id: "",
+    id: "",
     createdAt: "",
     updatedAt: "",
     __v: 0

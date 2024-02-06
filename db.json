@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "c058",
+      "password": "pruebasdesarrollo@gmail.com",
+      "email": "pruebasdesarrollo@gmail.com",
+      "name": "pruebasdesarrollo@gmail.com"
+    },
+    {
+      "id": "cb7c",
+      "password": "pruebasdesarrollo@gmail.com",
+      "email": "pruebasdesarrollo@gmail.com",
+      "name": "pruebasdesarrollo@gmail.com"
+    },
+    {
+      "id": "9a47",
+      "password": "rjuandavid1002@gmail.com",
+      "email": "rjuandavid1002@gmail.com",
+      "name": "Daniel Ramirez",
+      "createdAt": "2024-02-06T22:34:34.897Z",
+      "updatedAt": "2024-02-06T22:34:34.897Z"
+    },
+    {
+      "id": "e818",
+      "password": "rjuandavid1002@gmail.com",
+      "email": "rjuandavid1002@gmail.com"
+    },
+    {
+      "id": "b2ac",
+      "password": "rjuandavid1002@gmail.com",
+      "email": "rjuandavid1002@gmail.com"
+    },
+    {
+      "id": "02ee",
+      "password": "rjuandavid1002@gmail.com",
+      "email": "rjuandavid1002@gmail.com"
+    }
+  ]
+}

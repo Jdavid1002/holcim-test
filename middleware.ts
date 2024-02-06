@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function middleware(request: NextRequest) {
 
   const jwt = request.cookies.get("token")?.value || ''
-  if (!!!jwt) return NextResponse.redirect(new URL("/login", request.url));
+  if (!!!jwt) return NextResponse.redirect(new URL("/auth/login", request.url));
 
   try {
     const { payload } = await jwtVerify(
@@ -12,13 +12,13 @@ export async function middleware(request: NextRequest) {
       new TextEncoder().encode("SECRET_KEY_TO_GENERATE_TOKEN")
     );
 
-    if(payload && (request.nextUrl.pathname.includes("/login") || request.nextUrl.pathname.includes("/register"))){
+    if(payload && (request.nextUrl.pathname.includes("/auth/login") || request.nextUrl.pathname.includes("/register"))){
       return NextResponse.redirect(new URL("/dashboard", request.url));
     }
 
     return NextResponse.next();
   } catch (error) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/auth/login", request.url));
   }
 }
 

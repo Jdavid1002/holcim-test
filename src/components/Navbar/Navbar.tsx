@@ -33,8 +33,8 @@ const Navbar = (props : INavbar) => {
         </div>
       :
         <div className={style.navbarContainer} >
-          <CustomButton className={style.firstButton} text='Sign In' onClick={() =>router.push('/login') } />
-          <CustomButton className={style.secondButton} text='Register' onClick={() =>router.push('/register') } />
+          <CustomButton className={style.firstButton} text='Sign In' onClick={() =>router.push('/auth/login') } />
+          <CustomButton className={style.secondButton} text='Register' onClick={() =>router.push('/auth/register') } />
         </div>
       }
 

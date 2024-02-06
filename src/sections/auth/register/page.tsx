@@ -3,16 +3,12 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 // import RegisterImage from '../../public/register-poster.png'
-import { http } from '@/utils/http';
-import style from './page.module.css'
+import { useRegister } from './useRegister';
+import style from './page.module.css';
 import CustomButton from '@/components/CustomButton/CustomButton';
 import CustomInput from '@/components/CustomInput/CustomInput';
-import { useRouter } from 'next/navigation';
-import { LoginAction } from '@/redux/features/authSlice';
-import { updateUserAction } from '@/redux/features/userSlice';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Link from 'next/link';
-import Swal from 'sweetalert2';
+import { Formik, Form} from 'formik';
 
 export interface IFormLoginInputs {
   name : string
@@ -22,66 +18,17 @@ export interface IFormLoginInputs {
   slug_rol : string
 }
 
+const initialValues = {
+  email: '',
+  confirm_email: '',
+  name: '',
+  password: '',
+  slug_rol: ''
+};
+
 const RegisterPage = () => {
 
-  const dispatch = useAppDispatch()
-  const router = useRouter()
-  const auth = useAppSelector(state => state?.authSlice)
-  if(auth?.isLoggedIn) router.push('/dashboard')
-  
-  const [FormLoginInputs, updateFormLoginInputs] = useState <IFormLoginInputs>({
-    name : '',
-    email : '',
-    password : '',
-    slug_rol : '',
-    confirm_email : ''
-  })
-
-  const onRegister = async () => {
-
-    if(FormLoginInputs?.email !== FormLoginInputs?.confirm_email){
-      return Swal.fire({
-        icon : 'error',
-        title : 'Error',
-        text : 'The emails do not match.'
-      })
-    }
-
-    if(!FormLoginInputs?.email || !FormLoginInputs?.confirm_email || !FormLoginInputs?.name || !FormLoginInputs?.password){
-      return Swal.fire({
-        icon : 'error',
-        title : 'Error',
-        text : 'The emails do not match.'
-      })
-    }
-
-    const response = await http({
-      url : '/api/auth/register',
-      method: 'POST',
-      data : {
-        password : FormLoginInputs?.password || '',
-        email : FormLoginInputs?.email || '',
-        name : FormLoginInputs?.name || '',
-        slug_rol : FormLoginInputs?.slug_rol || ''
-      }
-    })
-
-
-    if(response?.code === 200){
-
-      dispatch(LoginAction({isLoggedIn : true}))
-      dispatch(updateUserAction({...response?.response}))
-
-      router.push('/dashboard')
-    }
-  }
-
-  const onChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    updateFormLoginInputs({
-      ...FormLoginInputs,
-      [e.target.name] : e.target.value
-    })
-  }
+  const { onRegister } = useRegister()
 
   return (
     <div className={`${style.loginContainer} bg-primary`} >
@@ -93,60 +40,83 @@ const RegisterPage = () => {
             <h1 className='text-primary' > Register </h1>
             <br />
             <p>Please enter your credentials to continue</p>
-            <p>have an account? <Link href="/login" className='text-secondary' > Sign In </Link></p>
+            <p>have an account? <Link href="/auth/login" className='text-secondary' > Sign In </Link></p>
           </div>
 
-          <div className={style.loginContainerFormTextInputs} >
-            <CustomInput 
-              type="email" 
-              onChange={onChange} 
-              name='email'
-              value={FormLoginInputs?.email}
-              placeholder='xxxxxxxx@xxxxx.com'
-              label='Email *'
-            />
-            <CustomInput 
-              type="email" 
-              onChange={onChange} 
-              name='confirm_email'
-              value={FormLoginInputs?.confirm_email}
-              placeholder='xxxxxxxx@xxxxx.com'
-              label='Confirm your email *'
-            />
-            <CustomInput 
-              type="text" 
-              onChange={onChange} 
-              name='name'
-              value={FormLoginInputs?.name}
-              placeholder='Stan Smith'
-              label='Full name*'
-            />
-            <CustomInput 
-              type="password" 
-              onChange={onChange} 
-              name='password'
-              value={FormLoginInputs?.password}
-              placeholder='*********'
-              label='Password *'
-            />
-            <CustomInput 
-              type="text" 
-              onChange={onChange} 
-              name='slug_rol'
-              value={FormLoginInputs?.slug_rol}
-              placeholder='xxxx-xxxx-xxxx-xxxx'
-              label='Rol code (not required)'
-            />
-
-            <CustomButton onClick={() => onRegister()} text='Register Now' />  
-          </div>
+          <Formik
+            initialValues={initialValues}
+            validate={values => {
+              const errors : any = {};
+        
+              if (!values.email) {
+                errors.email = 'Email is required';
+              } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+                errors.email = 'Invalid email address';
+              }
+        
+              if (!values.confirm_email) {
+                errors.confirm_email = 'Confirm email is required';
+              } else if (values.email !== values.confirm_email) {
+                errors.confirm_email = 'Emails do not match';
+              }
+        
+              if (!values.name) {
+                errors.name = 'Name is required';
+              }
+        
+              if (!values.password) {
+                errors.password = 'Password is required';
+              } else if (values.password.length < 8) {
+                errors.password = 'Password must be at least 8 characters long';
+              }
+        
+              // You can add more validations as needed for other fields
+        
+              return errors;
+            }}
+            onSubmit={(values) => {
+              onRegister(values);
+            }}
+          >
+            {({ isSubmitting }) => (
+              <Form className={style.loginContainerFormTextInputs}>
+                <CustomInput 
+                  placeholder='Correo electronico' 
+                  type="email" 
+                  name="email" 
+                  label='Email *'
+                />
+                <CustomInput 
+                  placeholder='Correo electronico' 
+                  type="email" 
+                  name="confirm_email" 
+                  label='Confirm your email *'
+                />
+                <CustomInput 
+                  placeholder='Stan Smith' 
+                  type="text" 
+                  name="name" 
+                  label='Full name*'
+                />
+                <CustomInput 
+                  placeholder='*********' 
+                  type="password" 
+                  name="password" 
+                  label='Password *'
+                />
+                <CustomButton type="submit" disabled={isSubmitting} text='Register Now' />  
+              </Form>
+            )}
+          </Formik>
         </div>
 
-        {/* <Image 
-          src={RegisterImage}
+        <Image 
+          src='https://images.pexels.com/photos/2173872/pexels-photo-2173872.jpeg?auto=compress&cs=tinysrgb&w=800'
           className={style.imageResponsive}
           alt='Login Image'
-        /> */}
+          width={1000}
+          height={1000}
+        />
       </div>
     </div>
   );

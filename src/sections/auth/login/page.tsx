@@ -8,7 +8,7 @@ import CustomButton from '@/components/CustomButton/CustomButton';
 import CustomInput from '@/components/CustomInput/CustomInput';
 import Link from 'next/link';
 import { useLogin } from './useLogin';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form} from 'formik';
 
 export interface IFormLoginInputs {
   email : string
@@ -28,7 +28,7 @@ const LoginPage = () => {
             <h1 className='text-primary' > Login </h1>
             <br />
             <p>Please enter your credentials to continue</p>
-            <p>Dont have an account? <Link href="/register" className='text-secondary' >Register</Link></p>
+            <p>Dont have an account? <Link href="/auth/register" className='text-secondary' >Register</Link></p>
           </div>
 
           <Formik
@@ -63,6 +63,13 @@ const LoginPage = () => {
           )}
           </Formik>
         </div>
+        <Image 
+          src='https://images.pexels.com/photos/105808/pexels-photo-105808.jpeg?auto=compress&cs=tinysrgb&w=800'
+          className={style.imageResponsive}
+          alt='Login Image'
+          width={1000}
+          height={1000}
+        />
       </div>
     </div>
   );

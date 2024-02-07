@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Image from 'next/image';
-// import loginImage from '../../../public/login-poster.png'
 import style from './page.module.css'
 import CustomButton from '@/components/CustomButton/CustomButton';
 import CustomInput from '@/components/CustomInput/CustomInput';
@@ -54,9 +53,9 @@ const LoginPage = () => {
           >
           {({ isSubmitting }) => (
             <Form className={style.loginContainerFormTextInputs} >
-              <CustomInput placeholder='Correo electronico' type="email" name="email" />
+              <CustomInput placeholder='xxxxx@xxxx.xxx' type="email" name="email" />
               <CustomInput placeholder='***********' type="password" name="password" />
-              <CustomButton type="submit" disabled={isSubmitting} text='Inicia Sesión' />
+              <CustomButton type="submit" disabled={isSubmitting} text='Sign in with Mail' />
               <div className={style.lineBig} />
               <div className={style.lineLittle} />
             </Form>

@@ -1,8 +1,7 @@
 'use client';
 
-import React, { useState } from 'react'
+import React from 'react'
 import Image from 'next/image';
-// import RegisterImage from '../../public/register-poster.png'
 import { useRegister } from './useRegister';
 import style from './page.module.css';
 import CustomButton from '@/components/CustomButton/CustomButton';
@@ -81,13 +80,13 @@ const RegisterPage = () => {
             {({ isSubmitting }) => (
               <Form className={style.loginContainerFormTextInputs}>
                 <CustomInput 
-                  placeholder='Correo electronico' 
+                  placeholder='Personal email' 
                   type="email" 
                   name="email" 
                   label='Email *'
                 />
                 <CustomInput 
-                  placeholder='Correo electronico' 
+                  placeholder='Confirm personal email' 
                   type="email" 
                   name="confirm_email" 
                   label='Confirm your email *'

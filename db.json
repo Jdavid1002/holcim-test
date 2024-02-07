@@ -5,7 +5,23 @@
       "password": "$2b$10$NaQ3fbcRBkNVaRl0Q/7PZ.hRymR5x2oTkDNzdSPt4w1u/ZvE1R1C6",
       "email": "rjuandavid1002@gmail.com",
       "name": "Daniel"
+    },
+    {
+      "id": "5d9b",
+      "password": "$2b$10$CMHvSt3axNip0KCCMjwmzOrLAgQstfTE6xKwMqcsd/0oSZUJj6Bey",
+      "email": "accounttest@gmail.com",
+      "name": "accounttest@gmail.com",
+      "created_at": "2024-02-07T12:47:47.898Z"
     }
   ],
-  "animals": []
+  "animals": [
+    {
+      "specie": "Perro",
+      "name": "test",
+      "race": "test",
+      "size": "pruebas",
+      "weight": "32",
+      "id": "2024-02-07T12:48:21.519Z795"
+    }
+  ]
 }

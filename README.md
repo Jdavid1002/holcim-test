@@ -4,6 +4,70 @@
 
 El proyecto **Sophos-Solutions-Test** es una aplicación web desarrollada utilizando las tecnologías ReactJS y NextJS. Su objetivo principal es proporcionar un sistema de gestión de animales que interactúa con un backend implementado con JSON Server. La aplicación consta de tres endpoints y tres vistas principales.
 
+A continuación, se presenta un paso a paso detallado para inicializar y ejecutar el proyecto **Sophos-Solutions-Test**, incluyendo la configuración y ejecución del servidor JSON:
+
+### Paso 1: Clonar el Repositorio
+
+Clona el repositorio del proyecto desde el repositorio remoto utilizando Git:
+
+```
+git clone <url_del_repositorio>
+```
+
+### Paso 2: Instalar Dependencias
+
+Accede al directorio del proyecto e instala las dependencias necesarias utilizando npm:
+
+```
+cd Sophos-Solutions-Test
+npm install
+```
+
+### Paso 3: Configurar Variables de Entorno
+
+Crea un archivo llamado `.env` en el directorio raíz del proyecto y configura las variables de entorno necesarias. Asegúrate de definir la URL del servidor JSON en `NEXT_PUBLIC_API_URL`:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001
+SECRET_KEY_TO_GENERATE_TOKEN=tu_clave_secreta
+```
+
+### Paso 4: Iniciar el Servidor JSON
+
+Abre una nueva terminal, navega hasta el directorio del proyecto y ejecuta el servidor JSON utilizando el siguiente comando:
+
+```
+npx json-server --watch db.json --port 3001
+```
+
+Esto iniciará el servidor JSON en el puerto 3001, utilizando el archivo `db.json` como base de datos.
+
+### Paso 5: Ejecutar la Aplicación
+
+Abre otra terminal, navega hasta el directorio del proyecto y ejecuta el servidor de desarrollo de Next.js con el siguiente comando:
+
+```
+npm run dev
+```
+
+Esto iniciará el servidor de desarrollo de Next.js y tu aplicación estará disponible en la dirección `http://localhost:3000`.
+
+### Paso 6: Acceder a la Aplicación
+
+Abre tu navegador web y accede a la dirección `http://localhost:3000` para ver la aplicación en funcionamiento.
+
+### Paso 7 (Opcional): Ejecutar Pruebas
+
+Si deseas ejecutar las pruebas unitarias y de integración, puedes utilizar el siguiente comando:
+
+```
+npm test
+```
+
+Esto iniciará Jest en el modo de observación, lo que te permitirá ejecutar y observar tus pruebas mientras desarrollas.
+
+Siguiendo estos pasos, podrás inicializar y ejecutar correctamente el proyecto **Sophos-Solutions-Test** en tu entorno local, junto con el servidor JSON para simular la interacción con la base de datos.
+
 ## Estructura del Proyecto
 
 El proyecto está organizado de la siguiente manera:

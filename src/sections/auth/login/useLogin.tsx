@@ -19,17 +19,18 @@ export const useLogin = () => {
   const onLogin = async (params: {password : string, email : string}) => {
 
     const response = await http({
-      url: '/users',
+      url: '/api/auth/login',
       method: 'POST',
       data: {
         password: params?.password || '',
         email: params?.email || '',
-      }
+      },
+      dont_use_another_port : true
     })
 
-    if (response) {
+    if (response?.code === 200) {
       dispatch(LoginAction({ isLoggedIn: true }))
-      dispatch(updateUserAction({ ...response }))
+      dispatch(updateUserAction({ ...response?.response}))
       router.push('/dashboard')
     }
   }

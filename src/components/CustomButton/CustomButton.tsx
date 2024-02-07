@@ -3,7 +3,7 @@ import style from './CustomButton.module.css'
 
 
 export interface ICustomButton {
-  text : string
+  text : string | JSX.Element
   onClick ?: () => void
   className ?: string
   disabled ?: boolean

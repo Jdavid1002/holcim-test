@@ -5,15 +5,17 @@ export interface IUseQuery {
   url : string
   data : any
   method : 'POST' | 'GET' | 'PUT' | 'DELETE'
+  dont_use_another_port ?: boolean
 }
 
-
 export const http = async (params : IUseQuery) => {
+
+  const url = params?.dont_use_another_port ? '' : process.env.NEXT_PUBLIC_API_URL
 
   try {
     const response = await axios({
       method : params?.method,
-      url : process.env.NEXT_PUBLIC_API_URL + params?.url,
+      url : url + params?.url,
       data : params?.data
     })
   

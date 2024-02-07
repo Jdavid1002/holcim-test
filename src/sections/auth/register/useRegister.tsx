@@ -6,7 +6,6 @@ import { updateUserAction } from '@/redux/features/userSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import Swal from 'sweetalert2';
 
-
 export interface IOnRegister {
   email : string
   password : string
@@ -39,20 +38,19 @@ export const useRegister = () => {
     }
 
     const response = await http({
-      url: '/users',
+      url: '/api/auth/register',
       method: 'POST',
       data: {
         password: params?.password || '',
         email: params?.email || '',
         name: params?.name || '',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      }
+      },
+      dont_use_another_port : true
     })
 
-    if (response) {
+    if (response?.code === 200) {
       dispatch(LoginAction({ isLoggedIn: true }))
-      dispatch(updateUserAction({ ...response }))
+      dispatch(updateUserAction({ ...response?.response }))
       router.push('/dashboard')
     }
   }

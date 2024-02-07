@@ -10,6 +10,10 @@
     "test": "jest --watchAll"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.7",
+    "@mui/x-data-grid": "^6.19.3",
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
     "bcrypt": "^5.1.1",

@@ -1,0 +1,67 @@
+.DashboardContainer{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DashboardContainerForm{
+  width: 100%;
+  max-width: 991px;
+  margin: 0px auto;
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.19);
+  -webkit-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.19);
+  -moz-box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.19);
+  background: white;
+  padding: 16px;
+}
+
+
+.DashboardContainerFormButton{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.DashboardContainerFormButton_Button {
+  width: 140px !important;
+  margin: 8px;
+}
+
+.DashboardContainerForm_DataGrid{
+  margin: 8px;
+}
+
+.DashboardContainerForm_Animal{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.DashboardContainerForm_Animal{
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 0.3fr 0.3fr;
+}
+
+.DashboardContainerForm_Animal_Button{
+  width: 35px;
+}
+
+.DashboardContainerCards{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+@media (max-width : 991px) {
+  .DashboardContainerForm{
+    overflow-y: scroll;
+    height: 80%;
+  }  
+}

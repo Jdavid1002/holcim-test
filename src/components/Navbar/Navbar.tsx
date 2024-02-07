@@ -7,6 +7,7 @@ import CustomButton from '../CustomButton/CustomButton'
 import { useRouter } from 'next/navigation'
 import { LogoutAction } from '@/redux/features/authSlice'
 import { clearUserAction } from '@/redux/features/userSlice'
+import { http } from '@/utils/http'
 
 export interface INavbar {
 
@@ -18,10 +19,18 @@ const Navbar = (props : INavbar) => {
   const router = useRouter()
   const dispatch = useAppDispatch()
 
-  const logOut = () => {
+  const logOut = async () => {
+    await http({
+      url: '/api/auth/logout',
+      method: 'POST',
+      data: null,
+      dont_use_another_port : true
+    })
+
     dispatch(LogoutAction())
     dispatch(clearUserAction())
     router.push('/')
+    
   }
 
   return (

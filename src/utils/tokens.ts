@@ -31,8 +31,15 @@ const validateToken = async () => {
 
 }
 
+const deleteToken = async () => {
+  const nextCookies = cookies();
+  nextCookies.delete('token')
+  return true;
+}
+
 
 export {
   createToken,
-  validateToken
+  validateToken,
+  deleteToken
 }

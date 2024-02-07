@@ -1,5 +1,5 @@
 'use client';
-import { http } from '@/utils/http';
+import { endpoints, http } from '@/utils/http';
 import { useRouter } from 'next/navigation';
 import { LoginAction } from '@/redux/features/authSlice';
 import { updateUserAction } from '@/redux/features/userSlice';
@@ -11,7 +11,7 @@ export interface IFormLoginInputs {
 }
 
 export const useLogin = () => {
-  const dispatch = useAppDispatch()
+  const dispatch : any = useAppDispatch()
   const router = useRouter()
   const auth = useAppSelector(state => state?.authSlice)
   if (auth?.isLoggedIn) router.push('/dashboard')
@@ -19,8 +19,8 @@ export const useLogin = () => {
   const onLogin = async (params: {password : string, email : string}) => {
 
     const response = await http({
-      url: '/api/auth/login',
-      method: 'POST',
+      url: endpoints.auth.login.url,
+      method: endpoints.auth.login.method,
       data: {
         password: params?.password || '',
         email: params?.email || '',

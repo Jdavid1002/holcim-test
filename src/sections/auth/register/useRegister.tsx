@@ -1,5 +1,5 @@
 'use client';
-import { http } from '@/utils/http';
+import { endpoints, http } from '@/utils/http';
 import { useRouter } from 'next/navigation';
 import { LoginAction } from '@/redux/features/authSlice';
 import { updateUserAction } from '@/redux/features/userSlice';
@@ -38,8 +38,8 @@ export const useRegister = () => {
     }
 
     const response = await http({
-      url: '/api/auth/register',
-      method: 'POST',
+      url: endpoints.auth.register.url,
+      method: endpoints.auth.register.method,
       data: {
         password: params?.password || '',
         email: params?.email || '',

@@ -40,3 +40,49 @@ export const http = async (params : IUseQuery) => {
     return null
   }
 }
+
+interface Endpoint {
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE';
+  url: string;
+}
+
+interface Endpoints {
+  [key: string]: {
+    [key: string]: Endpoint;
+  };
+}
+
+export const endpoints :Endpoints = {
+  auth: {
+    logout: {
+      method : 'POST',
+      url : '/api/auth/logout'
+    },
+    login: {
+      method : 'POST',
+      url : '/api/auth/login'
+    },
+    register: {
+      method : 'POST',
+      url : '/api/auth/register'
+    },
+  },
+  animals: {
+    list: {
+      method : 'GET',
+      url : '/animals'
+    },
+    create: {
+      method : 'POST',
+      url : '/animals'
+    },
+    update: {
+      method : 'PUT',
+      url : '/animals/'
+    },
+    delete: {
+      method : 'DELETE',
+      url : '/animals/'
+    },
+  },
+};

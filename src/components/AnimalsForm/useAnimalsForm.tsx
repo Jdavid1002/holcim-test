@@ -1,4 +1,4 @@
-import { http } from "@/utils/http";
+import { endpoints, http } from "@/utils/http";
 import { IAnimalData, IAnimalsForm } from "./AnimalsForm";
 import { useAppSelector } from "@/redux/hooks";
 
@@ -10,8 +10,8 @@ export const useAnimalsForm = (props : IAnimalsForm | null) => {
   const readAnimals = async () => {
     try {
       const response = await http({
-        url: '/animals',
-        method: 'GET',
+        url: endpoints.animals.list.url,
+        method: endpoints.animals.list.method,
         data : null
       });
       return response;
@@ -24,8 +24,8 @@ export const useAnimalsForm = (props : IAnimalsForm | null) => {
   const createAnimal = async (animalData : IAnimalData | null) => {
     try {
       const response = await http({
-        url: '/animals',
-        method: 'POST',
+        url: endpoints.animals.create.url,
+        method: endpoints.animals.create.method,
         data: {
           ...animalData,
           id : new Date().toISOString() + Math.floor(Math.random() * 1000).toString(),
@@ -46,8 +46,8 @@ export const useAnimalsForm = (props : IAnimalsForm | null) => {
   const updateAnimal = async (id : string, animalData : IAnimalData) => {
     try {
       const response = await http({
-        url: `/animals/${id}`,
-        method: 'PUT',
+        url: endpoints.animals.update.url + id,
+        method: endpoints.animals.update.method,
         data: animalData,
       });
       if(props?.getAnimals) props.getAnimals()
@@ -63,8 +63,8 @@ export const useAnimalsForm = (props : IAnimalsForm | null) => {
   const deleteAnimal = async (id : string) => {
     try {
       const response = await http({
-        url: `/animals/${id}`,
-        method: 'DELETE',
+        url: endpoints.animals.delete.url + id,
+        method: endpoints.animals.delete.method,
         data : null
       });
       if(props?.getAnimals) props.getAnimals()

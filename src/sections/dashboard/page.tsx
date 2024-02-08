@@ -65,7 +65,6 @@ const DashboardPage = () => {
         :
           <Alert severity="info"> Currently, you don't have animals </Alert>
         }
-
       </div>
 
       <Modal

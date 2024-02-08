@@ -7,7 +7,6 @@ import CustomButton from '../CustomButton/CustomButton';
 import { useAnimalsForm } from './useAnimalsForm';
 import style from './AnimalsForm.module.css';
 
-
 export interface IAnimalData {
   id : string
   specie : string
@@ -26,49 +25,20 @@ export interface IAnimalsForm {
 
 const AnimalsForm = (props: IAnimalsForm) => {
 
-  const { createAnimal , updateAnimal } = useAnimalsForm(props)
+  const { 
+    createAnimal, 
+    updateAnimal,
+    HandleFormValidations, 
+    titleScreen,
+    initialValues
+  } = useAnimalsForm(props)
 
   return (
     <div>
-      <h4> {props?.is_edit ? 'Edit' : 'Create'}  an animal. </h4>
+      <h4> {titleScreen} </h4>
       <Formik
-        initialValues={{
-          specie: props?.animalData?.specie ||  '',
-          name: props?.animalData?.name || '',
-          race: props?.animalData?.race || '',
-          size: props?.animalData?.size || '',
-          weight: props?.animalData?.weight || '',
-          id : props?.animalData?.id || ''
-        }}
-        
-        validate={values => {
-          const errors: any = {};
-
-          if (!values.specie) {
-            errors.specie = 'Specie is required';
-          }
-      
-          if (!values.name) {
-            errors.name = 'Name is required';
-          }
-      
-          if (!values.race) {
-            errors.race = 'Race is required';
-          }
-      
-          if (!values.size) {
-            errors.size = 'Size is required';
-          }
-      
-          if (!values.weight) {
-            errors.weight = 'Weight is required';
-          } else if (isNaN(Number(values.weight))) {
-            errors.weight = 'Weight must be a number';
-          }
-
-          return errors
-        }}
-
+        initialValues={initialValues}
+        validate={values => HandleFormValidations(values)}
         onSubmit={(values) => {
           if(props.is_edit && props?.animalData?.id) return updateAnimal(props?.animalData?.id , values)
           createAnimal(values)

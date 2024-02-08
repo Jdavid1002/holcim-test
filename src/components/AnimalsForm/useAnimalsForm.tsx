@@ -76,10 +76,52 @@ export const useAnimalsForm = (props : IAnimalsForm | null) => {
     }
   };
 
+  const HandleFormValidations = (values : any) => {
+    const errors: any = {};
+
+    if (!values.specie) {
+      errors.specie = 'Specie is required';
+    }
+
+    if (!values.name) {
+      errors.name = 'Name is required';
+    }
+
+    if (!values.race) {
+      errors.race = 'Race is required';
+    }
+
+    if (!values.size) {
+      errors.size = 'Size is required';
+    }
+
+    if (!values.weight) {
+      errors.weight = 'Weight is required';
+    } else if (isNaN(Number(values.weight))) {
+      errors.weight = 'Weight must be a number';
+    }
+
+    return errors
+  };
+
+  const titleScreen = props?.is_edit ? 'Edit' : 'Create' + 'an animal.'
+
+  const initialValues = {
+    specie: props?.animalData?.specie ||  '',
+    name: props?.animalData?.name || '',
+    race: props?.animalData?.race || '',
+    size: props?.animalData?.size || '',
+    weight: props?.animalData?.weight || '',
+    id : props?.animalData?.id || ''
+  }
+
   return {
     createAnimal,
     updateAnimal,
     readAnimals,
-    deleteAnimal
+    deleteAnimal,
+    HandleFormValidations,
+    titleScreen,
+    initialValues
   }
 }

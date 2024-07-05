@@ -1,8 +1,8 @@
-# Documentación del Proyecto Sophos-Solutions-Test
+# Template Login, Register and Dashboard
 
 ## Descripción del Proyecto
 
-El proyecto **Sophos-Solutions-Test** es una aplicación web desarrollada utilizando las tecnologías ReactJS y NextJS. Su objetivo principal es proporcionar un sistema de gestión de animales que interactúa con un backend implementado con JSON Server. La aplicación consta de tres endpoints y tres vistas principales.
+Es una aplicación web desarrollada utilizando las tecnologías ReactJS y NextJS. Su objetivo principal es proporcionar un sistema de gestión de animales que interactúa con un backend implementado con JSON Server. La aplicación consta de tres endpoints y tres vistas principales.
 
 A continuación, se presenta un paso a paso detallado para inicializar y ejecutar el proyecto **Sophos-Solutions-Test**, incluyendo la configuración y ejecución del servidor JSON:
 
